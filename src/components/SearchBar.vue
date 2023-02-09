@@ -9,7 +9,7 @@
             <input
               type="search"
               id="search-dropdown"
-              class="block p-2.5 w-full z-20 text-sm rounded-r-lg border-l-2 border bg-gray-700 border-l-gray-700 border-gray-600 placeholder-gray-400 text-white focus:border-blue-500"
+              class="block p-2.5 w-full z-20 text-sm rounded-lg border-l-2 border bg-gray-700 border-l-gray-700 border-gray-600 placeholder-gray-400 text-white focus:border-blue-500"
               placeholder="Enter Pokemon Here..."
               v-model="text"
             />
@@ -40,21 +40,35 @@
       </form>
 
       <div
-        class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6"
+        class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6 w-full"
       >
-        <div class="p-4 md:w-1/3 flex">
-          <div class="items-center">
+        <div class="p-4 w-full flex">
+          <div class="items-center w-full">
             <div
-              class="flex flex-wrap ml-4 text-2xl text-blue-400 my-6"
+              class="flex flex-wrap ml-4 text-2xl text-blue-400 w-full"
               v-for="(pokemon, idx) in filteredPokemon"
               :key="idx"
               v-if="!hasContent"
             >
-              <a
-                @click="getClickedPokemon(pokemon.url)"
-                class="font-medium text-white hover:underline cursor-pointer"
-                >{{ pokemon.name }}</a
-              >
+              <div class="relative w-full">
+                <div
+                  id="dropdown"
+                  class="z-10 divide-y divide-gray-100 rounded-lg shadow w-80 bg-gray-700 p-4"
+                >
+                  <ul
+                    class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefaultButton"
+                  >
+                    <li>
+                      <a
+                        @click="getClickedPokemon(pokemon.url)"
+                        class="font-medium text-white hover:underline cursor-pointer"
+                        >{{ pokemon.name }}</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div
